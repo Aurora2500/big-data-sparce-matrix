@@ -2,6 +2,10 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\graphicspath{ {./} }
 
 \author{Aurora Zuoris \\ \texttt{aurora.zuoris101@alu.ulpgc.es}}
 
@@ -36,7 +40,7 @@ aimed at optimizing iterating these, which may be beneficial for matrix multipli
 Aditionally there are some other more sophisticated formats, like the CCS and the CRS,
 of these two only the CCS will be implemented, as they're basically the same, just a transpose of each other.
 
-All the code used in the paper can be found at %TODO: add github link
+All the code used in the paper can be found at \url{https://github.com/Aurora2500/big-data-sparce-matrix}
 
 \subsection{Coordinate format}
 
@@ -74,6 +78,8 @@ ordered monotonically.
 Due to the complicated nature of this format and dificulty of online creation, it is often the most feasible to
 first create a coordinate matrix to use as an intermediary step for the creation of a matrix in this format.
 
+Due to time constraints, this format couldn't be benchmarked.
+
 \subsection{Testing}
 
 To test these implementations and assert their correctness,
@@ -85,11 +91,26 @@ which can be good as there's less of a focus on getting a single case correct, a
 values, and aditionally these tests won't consist of needing to reimplement the functionality that is being tested,
 as is often the case in other approaches, given that testing a property can usually be done with much more simple and expressive code.
 
-\section{Results}
+\section{Results and conclusions}
 
-\section{Conclusion}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{plot.png}
+\end{figure}
+
+As it can be seen, the indexed coordinate format speeds up the multiplication by a factor of up to 100,
+which is a very significant improvement.
+This is due to it only needing to iterate over the elements that are actually present in the matrix.
+
+More benchmarking needs to be done for a more conclusive result,
+but this is a very promising result for just the formats that were implemented.
 
 \section{Future work}
+
+A couple of key missing features from this paper is the
+use of a proper benchmarking framework, like JMH.
+Aditionally, some formats that were planned like the CCS
+couldn't be benchmarked due to time constraints.
 
 In the future, it might be interesting to see even more specialized matrix formats that could be used,
 for example for unitary matrices or for symetric matrices,
